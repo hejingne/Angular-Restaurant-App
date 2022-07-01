@@ -11,13 +11,4 @@
   </li>
 </ul>
 
-
-<div *ngIf="selectedItem">
-  <h2> {{selectedItem.name | uppercase}} Details </h2>    <!-- Format with UppercasePipe -->
-  <div> ID: {{selectedItem.id}} </div>
-  <div>
-      <label for="item-name"> Item Name: </label>
-      <input id="item-name"
-             [(ngModel)]="selectedItem.name"
-             placeholder="name" > <!-- 2-way data binding between textbox and selectedItem.name -->
-  </div>
+<app-item-detail [item]="selectedItem"> </app-item-detail>

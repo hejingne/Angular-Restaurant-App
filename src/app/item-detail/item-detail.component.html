@@ -1,0 +1,10 @@
+<div *ngIf="item">
+  <h2> {{item.name | uppercase}} Details </h2>    <!-- Format with UppercasePipe -->
+  <div> ID: {{item.id}} </div>
+  <div>
+      <label for="item-name"> Item Name: </label>
+      <input id="item-name"
+             [(ngModel)]="item.name"
+             placeholder="name" > <!-- 2-way data binding between textbox and item.name -->
+  </div>
+</div>
