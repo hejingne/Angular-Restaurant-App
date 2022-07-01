@@ -1,0 +1,7 @@
+<h2> {{item.name | uppercase}} Details </h2>    <!-- Format with UppercasePipe -->
+<div>
+    <label for="name"> Item name: </label>
+    <input id="name"
+           [(ngModel)]="item.name"
+           placeholder="name" > <!-- 2-way data binding between textbox and item.name -->
+</div>
