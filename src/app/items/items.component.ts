@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Item } from '../item';
+import { ITEMS } from '../mock-items';
 
 @Component({
   selector: 'app-items',
@@ -8,14 +10,16 @@ import { Item } from '../item';
 })
 export class ItemsComponent implements OnInit {
 
-  item: Item = {
-    id: 1,
-    name: "Pad Thai"
-  };
+  items = ITEMS;
+  selectedItem?: Item;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSelect(item: Item): void {
+    this.selectedItem = item;
   }
 
 }
