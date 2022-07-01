@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Item } from '../item';
-import { ITEMS } from '../mock-items';
+import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-items',
@@ -10,16 +10,21 @@ import { ITEMS } from '../mock-items';
 })
 export class ItemsComponent implements OnInit {
 
-  items = ITEMS;
+  items?: Item[] = [];
   selectedItem?: Item;
 
-  constructor() { }
+  constructor(private itemService: ItemService) { }
 
   ngOnInit(): void {
+    this.getItems();
   }
 
   onSelect(item: Item): void {
     this.selectedItem = item;
+  }
+
+  getItems(): void {
+    this.itemService.getItems().subscribe(items => this.items = items);
   }
 
 }
