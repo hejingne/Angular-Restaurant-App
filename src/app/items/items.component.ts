@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Item } from '../item';
 import { ItemService } from '../item.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-items',
@@ -13,7 +14,8 @@ export class ItemsComponent implements OnInit {
   items?: Item[] = [];
   selectedItem?: Item;
 
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService,
+              private messageService: MessageService) { }   // Inject each Service class as singleton
 
   ngOnInit(): void {
     this.getItems();
@@ -21,6 +23,7 @@ export class ItemsComponent implements OnInit {
 
   onSelect(item: Item): void {
     this.selectedItem = item;
+    this.messageService.add(`ItemsComponent: Selected item of Id ${item.id}`);
   }
 
   getItems(): void {
