@@ -58,6 +58,15 @@ export class ItemService {
     )
   }
 
+  /* CRUD - DELETE */
+  deleteItem(id: number): Observable<Item> {
+    const itemURLById = `${this.itemsURL}/${id}`;
+    return this.http.delete<Item>(itemURLById, this.httpOptions)
+            .pipe(
+                tap(_ => this.log(`ItemService: Deleted item of Id ${id}`)),
+                catchError(this.handleError<Item>(`deleteItem`))
+            );
+  }
  /**
  * Error handling function that handles Http operation that failed and let the app continue.
  * It takes a type param so it can return the safe value as the type that the app expects.

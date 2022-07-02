@@ -33,7 +33,13 @@ export class ItemsComponent implements OnInit {
   add(name: string): void {
     name = name.trim();
     if (name) {
-      this.itemService.addItem({ name } as Item).subscribe(item => this.items.push(item));
+      this.itemService.addItem({ name } as Item)
+          .subscribe(item => this.items.push(item));
     }
+  }
+
+  delete(item: Item): void {
+    this.itemService.deleteItem(item.id)
+        .subscribe(() => this.items = this.items.filter(i => i !== item))
   }
 }

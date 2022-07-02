@@ -9,6 +9,12 @@
         <span class="badge"> {{item.id}} </span>
         <span class="name"> {{item.name}} </span>
     </button>
+    <button type="button"
+            class="delete"
+            title="delete item"
+            (click)="delete(item)">
+      x
+    </button>
   </li>
 </ul>
 
