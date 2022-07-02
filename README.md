@@ -14,6 +14,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Create a shared service to assemble the items
 - Use Angular Dependency Injection System to inject service classes into components to decouple data access logic and data presentation logic
 - Use routing to navigate among different views and their components by declaring a separate, top-level module dedicated to routing
+- Add data persistence features using Angular's HttpClient mechanism
 
 ## Development server
 
