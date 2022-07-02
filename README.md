@@ -12,7 +12,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Enable users to select a item from a list and edit that item in the details view
 - Format data with pipes
 - Create a shared service to assemble the items
-- Use routing to navigate among different views and their components
+- Use Angular Dependency Injection System to inject service classes into components to decouple data access logic and data presentation logic
+- Use routing to navigate among different views and their components by declaring a separate, top-level module dedicated to routing
 
 ## Development server
 
