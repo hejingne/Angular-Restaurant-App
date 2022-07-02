@@ -11,7 +11,7 @@ import { MessageService } from '../message.service';
 })
 export class ItemsComponent implements OnInit {
 
-  items?: Item[] = [];
+  items: Item[] = [];
   selectedItem?: Item;
 
   constructor(private itemService: ItemService,
@@ -30,4 +30,10 @@ export class ItemsComponent implements OnInit {
     this.itemService.getItems().subscribe(items => this.items = items);
   }
 
+  add(name: string): void {
+    name = name.trim();
+    if (name) {
+      this.itemService.addItem({ name } as Item).subscribe(item => this.items.push(item));
+    }
+  }
 }

@@ -24,7 +24,7 @@ export class InMemoryDataService implements InMemoryDbService {
     return {items};
   }
 
-  genrateId(items: Item[]): number {
+  genId(items: Item[]): number {  // Override the inherited genId() method
     return items.length > 0
       ? Math.max(...items.map(item => item.id)) + 1
       : 1;

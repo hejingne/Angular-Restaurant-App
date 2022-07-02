@@ -11,3 +11,15 @@
     </button>
   </li>
 </ul>
+
+<div>
+  <h2> Add a new item </h2>
+  <label for="new-item"> New Item Name: </label>
+  <input id="new-item"
+         #newItemName />
+  <button type="button"
+          class="add-button"
+          (click)=" add(newItemName.value); newItemName.value = '' ">
+        Add Item
+  </button>
+</div>

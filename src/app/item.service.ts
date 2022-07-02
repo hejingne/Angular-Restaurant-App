@@ -22,6 +22,15 @@ export class ItemService {
   constructor(private messageService: MessageService,
               private http: HttpClient) { }
 
+  /* CRUD - CREATE */
+  addItem(item: Item): Observable<Item> {
+    return this.http.post<Item>(this.itemsURL, item, this.httpOptions)
+            .pipe(
+              tap((newItem: Item) => this.log(`ItemService: Added item of Id ${newItem.id}`)),
+              catchError(this.handleError<Item>(`addItem`))
+            )
+  }
+
   /* CRUD - READ */
   getItems(): Observable<Item[]> {  // Get items from the remote server
     return this.http.get<Item[]>(this.itemsURL)
