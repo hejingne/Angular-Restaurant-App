@@ -14,13 +14,13 @@ export class ItemService {
 
   getItems(): Observable<Item[]> {
     const items = of(ITEMS);
-    this.messageService.add('ItemService: fetched items successfully');
+    this.messageService.add('ItemService: Fetched items successfully');
     return items;
    }
 
    getItem(id: number): Observable<Item> {
      const item = ITEMS.find(item => item.id === id)!;
-     this.messageService.add(`ItemService: fetched item of Id ${id}`);
+     this.messageService.add(`ItemService: Fetched item of Id ${id}`);
      return of(item);
    }
 }

@@ -27,4 +27,8 @@ export class ItemDetailComponent implements OnInit {
     this.itemService.getItem(id).subscribe(item => this.item = item);
   }
 
+  goBack(): void {
+    this.location.back(); // Navigate backward 1 step in the browser's history stack
+  }
+
 }
