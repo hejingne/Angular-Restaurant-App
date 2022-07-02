@@ -31,4 +31,10 @@ export class ItemDetailComponent implements OnInit {
     this.location.back(); // Navigate backward 1 step in the browser's history stack
   }
 
+  saveEdit(): void {
+    if (this.item) {
+      this.itemService.updateItem(this.item).subscribe(() => this.goBack());  // Back to previous view after update
+    }
+  }
+
 }

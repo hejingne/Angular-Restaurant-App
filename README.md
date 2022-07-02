@@ -1,6 +1,6 @@
 # Angular Restaurant App
 This application helps the restaurant owner to manage its stable of menu items. It contains common features that can be found in any data-driven apps. The final version acquires and displays a list of items, edits a selected item's detail and navigates among different views of item data.\
-The application makes requests and receives simulated responses from ```HttpClient``` via in-memory Web API and data store.
+The application makes CRUD requests and receives simulated responses from ```HttpClient``` via in-memory Web API and data store.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.3.
 
 # Angular concepts used in this application

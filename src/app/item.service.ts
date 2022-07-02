@@ -12,15 +12,21 @@ import { MessageService } from './message.service';
 })
 export class ItemService {
 
-  private itemsURL = 'api/items';
+  itemsURL = 'api/items';
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
 
   constructor(private messageService: MessageService,
               private http: HttpClient) { }
 
+  /* CRUD - READ */
   getItems(): Observable<Item[]> {  // Get items from the remote server
     return this.http.get<Item[]>(this.itemsURL)
             .pipe(
-                tap(_ => this.messageService.add(`ItemService: Fetched items`)),
+                tap(_ => this.log(`ItemService: Fetched items`)),
                 catchError(this.handleError<Item[]>('getItems', []))
             );
    }
@@ -29,10 +35,19 @@ export class ItemService {
     const itemURLById = `${this.itemsURL}/${id}`;
     return this.http.get<Item>(itemURLById)
             .pipe(
-                tap(_ => this.messageService.add(`ItemService: Fetched item of Id ${id}`)),
+                tap(_ => this.log(`ItemService: Fetched item of Id ${id}`)),
                 catchError(this.handleError<Item>(`getItem id=${id}`))
             );
  }
+
+ /* CRUD - UPDATE */
+  updateItem(item: Item): Observable<any> {
+    return this.http.put(this.itemsURL, item, this.httpOptions)
+            .pipe(
+                tap(_ => this.log(`ItemService: Updated item of Id ${item.id}`)),
+                catchError(this.handleError<any>(`updateItem id=${item.id}`))
+    )
+  }
 
  /**
  * Error handling function that handles Http operation that failed and let the app continue.
@@ -44,8 +59,12 @@ export class ItemService {
  private handleError<T>(operation='operation', result?: T) {
    return (error: any): Observable<T> => {
      console.error(error);
-     this.messageService.add(`ItemService: ${operation} failed: ${error.message}`);
+     this.log(`ItemService: ${operation} failed: ${error.message}`);
      return of(result as T);
    }
+ }
+
+ private log(message: string): void {
+   this.messageService.add(message);
  }
 }
