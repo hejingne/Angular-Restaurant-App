@@ -40,7 +40,7 @@ export class ItemService {
             );
    }
 
-  getItem(id: number): Observable<Item> {
+  getItemById(id: number): Observable<Item> {
     const itemURLById = `${this.itemsURL}/${id}`;
     return this.http.get<Item>(itemURLById)
             .pipe(
@@ -48,6 +48,21 @@ export class ItemService {
                 catchError(this.handleError<Item>(`getItem id=${id}`))
             );
  }
+
+  getItemsByName(name: string): Observable<Item[]> {  // GET items whose name contain the search keyword
+    if (!name.trim()) {
+      return of([]);    // return an emoty array if there's no search keyword
+    } else {
+      const itemURLByName = `${this.itemsURL}/?name=${name}`;
+      return this.http.get<Item[]>(itemURLByName)
+              .pipe(
+                tap(ary => ary.length
+                          ? this.log(`ItemService: Found items matching ${name}`)
+                          : this.log(`ItemService: No items matching ${name}`)),
+                          catchError(this.handleError<Item[]>('searchItems', []))
+              )
+    }
+  }
 
  /* CRUD - UPDATE */
   updateItem(item: Item): Observable<any> {
